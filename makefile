@@ -3,3 +3,6 @@ stat: main.o dist.o funs.o
 
 %.o: %.c
 	gcc -c $^
+
+clean:
+	rm *.o stat
