@@ -1,5 +1,14 @@
 #include "funs.h"
 #include "dist.h"
 
-Dist zdist = { .name = 'z', .funs = {z_cdf, z_invcdf} };
-Dist tdist = { .name = 't', .funs = {t_cdf, t_invcdf} };
+Contenious zdist = {
+    'z',
+    { z_cdf_P, z_cdf_Q },
+    { z_invcdf_P, z_invcdf_Q },
+};
+
+Contenious tdist = {
+    't',
+    { t_cdf_P, t_cdf_Q },
+    { t_invcdf_P, t_invcdf_Q },
+};
