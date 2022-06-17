@@ -3,9 +3,12 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
-#include "dist.h"
 #include "funs.h"
+#include "dist.h"
 #include <math.h>
+#define CONTENIOUS "zt"
+#define DISCRETE ""
+#define DISTRIBUTION CONTENIOUS DISCRETE
 #define ERROR(S) fprintf(stderr, (S)), exit(1)
 #define USAGE_ERROR() fprintf(stderr, "Usage: %s [-lir] [-z z_val | -t t_val [mu1 mu2]]\n", argv[0]), exit(1);
 
@@ -34,13 +37,12 @@ int main(int argc, char *argv[])
     int i = 0;
     char opt, distflag = 0;
     bool left, right, inverse;
-    const char* dists = "zt";
 
     left = right = inverse = false;
 
     while ((opt = getopt(argc, argv, "z:t:lri")) != -1) {
 
-        if(strchr(dists, opt)) {
+        if(strchr(CONTENIOUS, opt)) {
             if(distflag != 0)
                 ERROR("Error: Can only use one distribution at a time\n");
             else {
