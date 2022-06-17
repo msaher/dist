@@ -2,10 +2,16 @@
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
 
-double  z_cdf(double               args[])  {  return  gsl_cdf_gaussian_P(args[0],          1);        }                     
-double  z_invcdf(double            args[])  {  return  gsl_cdf_gaussian_Pinv(args[0],       1);        }                     
-double  t_cdf(double               args[])  {  return  gsl_cdf_tdist_Q(args[0],             args[1]);  }                     
-double  t_invcdf(double            args[])  {  return  gsl_cdf_tdist_Qinv(args[0],          args[1]);  }                     
+double  z_cdf_P(double               args[])  {  return  gsl_cdf_gaussian_P(args[0],          1);        }
+double  z_cdf_Q(double               args[])  {  return  gsl_cdf_gaussian_Q(args[0],          1);        }
+double  z_invcdf_P(double            args[])  {  return  gsl_cdf_gaussian_Pinv(args[0],       1);        }
+double  z_invcdf_Q(double            args[])  {  return  gsl_cdf_gaussian_Qinv(args[0],       1);        }
+
+double  t_cdf_P(double               args[])  {  return  gsl_cdf_tdist_P(args[0],             args[1]);  }
+double  t_cdf_Q(double               args[])  {  return  gsl_cdf_tdist_Q(args[0],             args[1]);  }
+double  t_invcdf_P(double            args[])  {  return  gsl_cdf_tdist_Pinv(args[0],          args[1]);  }
+double  t_invcdf_Q(double            args[])  {  return  gsl_cdf_tdist_Qinv(args[0],          args[1]);  }
+
 /* double  exponential_cdf(double     args[])  {  return  gsl_cdf_exponential_P(args[0],       args[1]);  } */                     
 /* double  f_cdf(double               args[])  {  return  gsl_cdf_fdist_Q(args[0],             args[1],   args[2]);  } */          
 /* double  f_cdfinv(double            args[])  {  return  gsl_cdf_fdist_Qinv(args[0],          args[1],   args[2]);  } */          

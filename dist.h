@@ -2,7 +2,7 @@
 #define DIST_H
 
 /* probability function */
-typedef double (*)(double[]) Prob;
+typedef double (*Prob)(double[]);
 
 typedef struct {
     Prob left;
@@ -21,7 +21,7 @@ typedef struct {
     Prob pdf;
 } Discrete;
 
-extern Dist zdist;
-extern Dist tdist;
+extern Contenious zdist;
+extern Contenious tdist;
 
 #endif

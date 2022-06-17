@@ -1,11 +1,16 @@
 #ifndef FUNS_H
 #define FUNS_H
 #define MAX_ARGS 4
-double  z_cdf(double               args[]);
-double  z_invcdf(double            args[]);
 
-double  t_cdf(double               args[]);
-double  t_invcdf(double            args[]);
+double  z_cdf_P(double               args[]);
+double  z_cdf_Q(double               args[]);
+double  z_invcdf_P(double            args[]);
+double  z_invcdf_Q(double            args[]);
+
+double  t_cdf_P(double               args[]);
+double  t_cdf_Q(double               args[]);
+double  t_invcdf_P(double            args[]);
+double  t_invcdf_Q(double            args[]);
 
 /* double  exponential_cdf(double     args[]); */
 
