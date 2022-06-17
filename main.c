@@ -17,12 +17,15 @@ void setfun(char distflag, bool inverse, bool left, bool right);
 
 void setfun(char distflag, bool inverse, bool left, bool right)
 {
-    Dist dist;
+    Contenious dist;
     if(distflag == 'z')
         dist = zdist;
     else
         dist = tdist;
-    fun = zdist.funs[inverse];
+    if(inverse)
+        fun = dist.invcdfs.left;
+    else
+        fun = dist.cdfs.left;
 }
 
 int main(int argc, char *argv[])
