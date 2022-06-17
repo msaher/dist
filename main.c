@@ -20,6 +20,8 @@ double nums[MAX_ARGS];
 
 void setfun(char distflag, bool inverse, bool left, bool right);
 int collect_args(int argc, char* argv[]);
+void collect_opts(int argc, char* argv[], char* distflag, bool *inverse, bool *left, bool *right);
+
 
 void setfun(char distflag, bool inverse, bool left, bool right)
 {
@@ -34,34 +36,56 @@ void setfun(char distflag, bool inverse, bool left, bool right)
         fun = dist.cdfs.left;
 }
 
-int main(int argc, char *argv[])
-{
-    char opt, distflag = 0;
-    bool left, right, inverse;
-    left = right = inverse = false;
 
+/* Assign arguements into nums and return how many of them are there */
+int collect_args(int argc, char* argv[])
+{
+    int n = 0;
+    char *signal; /* rest of the string */
+
+    for(int i = optind; i < argc; i++, n++) {
+        nums[n] = strtod(argv[i], &signal);
+        if(*signal != 0) /* string isn't entirely a number */
+            ERROR("Error: %s cannot be interpreted as a number\n", argv[i]);
+    }
+
+    return n;
+}
+
+void collect_opts(int argc, char* argv[], char* distflag, bool *inverse, bool *left, bool *right)
+{
+    char opt;
     while((opt = getopt(argc, argv, "ztlri")) != -1) {
         if(strchr(CONTENIOUS, opt)) {
-            if(distflag != 0)
+            if(*distflag != 0)
                 ERROR("Error: Multiple distributions given. Aborting...\n");
             else
-                distflag = opt;
+                *distflag = opt;
         }
         else switch(opt) {
             case 'i':
-                inverse = true;
+                *inverse = true;
                 break;
             case 'r':
-                right = true;
+                *right = true;
                 break;
             case 'l':
-                left = true;
+                *left = true;
                 break;
             default:
                 ERROR_USAGE();
                 break;
         }
     }
+}
+
+int main(int argc, char *argv[])
+{
+    char distflag = 0;
+    bool left, right, inverse;
+    left = right = inverse = false;
+
+    collect_opts(argc, argv, &distflag, &inverse, &left, &right);
 
     if(optind >= argc) {
         fprintf(stderr, "Error: Missing positional arguements\n");
@@ -81,19 +105,4 @@ int main(int argc, char *argv[])
     printf("%g\n", result);
 
     return 0;
-}
-
-/* Assign arguements into nums and return how many of them are there */
-int collect_args(int argc, char* argv[])
-{
-    int n = 0;
-    char *signal; /* rest of the string */
-
-    for(int i = optind; i < argc; i++, n++) {
-        nums[n] = strtod(argv[i], &signal);
-        if(*signal != 0) /* string isn't entirely a number */
-            ERROR("Error: %s cannot be interpreted as a number\n", argv[i]);
-    }
-
-    return n;
 }
