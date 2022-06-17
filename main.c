@@ -9,14 +9,17 @@
 #define CONTENIOUS "zt"
 #define DISCRETE ""
 #define DISTRIBUTION CONTENIOUS DISCRETE
+#define OPTIONS "ilr"
 #define ERROR(...) fprintf(stderr, __VA_ARGS__), exit(1)
-#define USAGE_ERROR() ERROR("Usage: %s [-lir] [-z | -t] n1 [n2] [n3]\n", argv[0])
+#define ERROR_USAGE() ERROR("Usage: %s [-lir] [-z | -t] n1 [n2] [n3] [n4]\n", argv[0])
+#define DEFAULT_DIST 'z'
 
 /* globals */
 double (*fun)(double[]);
 double nums[MAX_ARGS];
 
 void setfun(char distflag, bool inverse, bool left, bool right);
+int collect_args(int argc, char* argv[]);
 
 void setfun(char distflag, bool inverse, bool left, bool right)
 {
@@ -33,44 +36,44 @@ void setfun(char distflag, bool inverse, bool left, bool right)
 
 int main(int argc, char *argv[])
 {
-    double nums[MAX_ARGS];
-    int i = 0;
     char opt, distflag = 0;
     bool left, right, inverse;
-
     left = right = inverse = false;
 
-    while ((opt = getopt(argc, argv, "z:t:lri")) != -1) {
-
+    while((opt = getopt(argc, argv, "ztlri")) != -1) {
         if(strchr(CONTENIOUS, opt)) {
             if(distflag != 0)
-                ERROR("Error: Can only use one distribution at a time\n");
-            else {
+                ERROR("Error: Multiple distributions given. Aborting...\n");
+            else
                 distflag = opt;
-                if(optarg == NULL)
-                    exit(1);
-                nums[i++] = atof(optarg);
-            }
         }
-        else
-            switch(opt) {
-                case 'i':
-                    inverse = true;
-                    break;
-                case 'r':
-                    right = true;
-                    break;
-                case 'l':
-                    left = true;
-                    break;
-                default:
-                    USAGE_ERROR();
-                    break;
-            }
+        else switch(opt) {
+            case 'i':
+                inverse = true;
+                break;
+            case 'r':
+                right = true;
+                break;
+            case 'l':
+                left = true;
+                break;
+            default:
+                ERROR_USAGE();
+                break;
+        }
     }
 
+    if(optind >= argc) {
+        fprintf(stderr, "Error: Missing positional arguements\n");
+        ERROR_USAGE();
+    }
+    else if((argc - optind) > MAX_ARGS)
+        ERROR("Error: Too many positional arguements\n");
+
+    int n = collect_args(argc, argv);
+
     if(distflag == 0)
-        USAGE_ERROR();
+        distflag = DEFAULT_DIST;
 
     setfun(distflag, inverse, left, right);
 
@@ -78,4 +81,19 @@ int main(int argc, char *argv[])
     printf("%g\n", result);
 
     return 0;
+}
+
+/* Assign arguements into nums and return how many of them are there */
+int collect_args(int argc, char* argv[])
+{
+    int n = 0;
+    char *signal; /* rest of the string */
+
+    for(int i = optind; i < argc; i++, n++) {
+        nums[n] = strtod(argv[i], &signal);
+        if(*signal != 0) /* string isn't entirely a number */
+            ERROR("Error: %s cannot be interpreted as a number\n", argv[i]);
+    }
+
+    return n;
 }
