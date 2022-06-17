@@ -9,8 +9,8 @@
 #define CONTENIOUS "zt"
 #define DISCRETE ""
 #define DISTRIBUTION CONTENIOUS DISCRETE
-#define ERROR(S) fprintf(stderr, (S)), exit(1)
-#define USAGE_ERROR() fprintf(stderr, "Usage: %s [-lir] [-z z_val | -t t_val [mu1 mu2]]\n", argv[0]), exit(1);
+#define ERROR(...) fprintf(stderr, __VA_ARGS__), exit(1)
+#define USAGE_ERROR() ERROR("Usage: %s [-lir] [-z | -t] n1 [n2] [n3]\n", argv[0])
 
 /* globals */
 double (*fun)(double[]);
