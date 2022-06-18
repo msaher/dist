@@ -19,6 +19,16 @@ typedef struct {
     Prob pdf;
 } Discrete;
 
+enum disttype { DISCRETE, CONTENIOUS };
+
+typedef struct {
+    union {
+        Contenious cont;
+        Discrete disc;
+    };
+    enum disttype type;
+} Distribution;
+
 extern Contenious zdist;
 extern Contenious tdist;
 
