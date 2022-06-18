@@ -10,13 +10,11 @@ typedef struct {
 } Cdfs;
 
 typedef struct {
-    char name;
     Cdfs cdfs;
     Cdfs invcdfs;
 } Contenious;
 
 typedef struct {
-    char name;
     Cdfs cdfs;
     Prob pdf;
 } Discrete;
