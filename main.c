@@ -8,7 +8,6 @@
 #include <math.h>
 #define ERROR(...) fprintf(stderr, __VA_ARGS__), exit(1)
 #define ERROR_USAGE() ERROR("Usage: %s [-lir] [-z | -t] n1 [n2] [n3] [n4]\n", argv[0])
-#define DEFAULT_DIST 'z'
 
 Prob fun;
 double nums[MAX_ARGS];
@@ -18,15 +17,14 @@ void setfun(bool inverse, bool left, bool right);
 int collect_args(int argc, char* argv[]);
 void collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right);
 
-
 void setfun(bool inverse, bool left, bool right)
 {
     Cdfs cdfs;
     if(dist->type == CONTENIOUS) {
         if(inverse)
-            cdfs = dist->cont.invcdfs;
+            cdfs = dist->cont->invcdfs;
         else
-            cdfs = dist->cont.cdfs;
+            cdfs = dist->cont->cdfs;
         if(left)
             fun = cdfs.left;
         else
@@ -54,6 +52,9 @@ int collect_args(int argc, char* argv[])
 void collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right)
 {
     char opt;
+    char optstr[2]; /* string version of opt. Used for look up */
+    optstr[1] = '\0';
+    bool distflag = false; /* used to indicate that a dist has been found */
     while((opt = getopt(argc, argv, "ztlri")) != -1) {
         switch(opt) {
             case 'i':
@@ -65,16 +66,15 @@ void collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right
             case 'l':
                 *left = true;
                 break;
-            case 'z':
-                dist->cont = zdist,
-                dist->type = CONTENIOUS;
-                break;
-            case 't':
-                dist->cont = tdist;
-                dist->type = CONTENIOUS;
-                break;
             default:
-                ERROR_USAGE();
+                optstr[0] = opt;
+                if(dist_lookup(optstr, &dist))
+                    if(distflag)
+                        ERROR("Error: Multiple Distributions given\n");
+                    else
+                        distflag = true;
+                else
+                    ERROR_USAGE();
                 break;
         }
     }
