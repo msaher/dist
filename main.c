@@ -6,33 +6,15 @@
 #include "funs.h"
 #include "dist.h"
 #include <math.h>
-#define ERROR(...) fprintf(stderr, __VA_ARGS__), exit(1)
-#define ERROR_USAGE() ERROR("Usage: %s [-lir] [-z | -t] n1 [n2] [n3] [n4]\n", argv[0])
+#include "utils.h"
+#include "funsetter.h"
 
-Prob fun;
 double nums[MAX_ARGS];
 Distribution* dist;
 
 void setfun(bool inverse, bool left, bool right);
 int collect_args(int argc, char* argv[]);
 bool collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right);
-
-void setfun(bool inverse, bool left, bool right)
-{
-    Cdfs cdfs;
-    if(dist->type == CONTENIOUS) {
-        if(inverse)
-            cdfs = dist->cont->invcdfs;
-        else
-            cdfs = dist->cont->cdfs;
-        if(left)
-            fun = cdfs.left;
-        else
-            fun = cdfs.right;
-    }
-    else
-        ERROR("Discrete stuff is not implemented yet");
-}
 
 /* Assign arguements into nums and return how many of them are there */
 int collect_args(int argc, char* argv[])
@@ -100,7 +82,7 @@ int main(int argc, char *argv[])
     if(req != n)
         ERROR("Invalid number of arguements exepcted %d, but got %d\n", req, n);
 
-    setfun(inverse, left, right);
+    Prob fun = get_fun(dist, inverse, left, right);
 
     double result = fun(nums);
     printf("%g\n", result);
