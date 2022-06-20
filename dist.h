@@ -13,11 +13,13 @@ typedef struct {
 typedef struct {
     Cdfs cdfs;
     Cdfs invcdfs;
+    int nargs;
 } Contenious;
 
 typedef struct {
     Cdfs cdfs;
     Prob pdf;
+    int nargs;
 } Discrete;
 
 enum disttype { DISCRETE, CONTENIOUS };

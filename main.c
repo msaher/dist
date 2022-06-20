@@ -94,14 +94,11 @@ int main(int argc, char *argv[])
         dist->type = CONTENIOUS;
     }
 
-    if(optind >= argc) {
-        fprintf(stderr, "Error: Missing positional arguements\n");
-        ERROR_USAGE();
-    }
-    else if((argc - optind) > MAX_ARGS)
-        ERROR("Error: Too many positional arguements\n");
-
+    /* number of required arguements */
+    int req = (dist->type == CONTENIOUS) ? dist->cont->nargs : dist->disc->nargs;
     int n = collect_args(argc, argv);
+    if(req != n)
+        ERROR("Invalid number of arguements exepcted %d, but got %d\n", req, n);
 
     setfun(inverse, left, right);
 
