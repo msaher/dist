@@ -15,7 +15,7 @@ Distribution* dist;
 
 void setfun(bool inverse, bool left, bool right);
 int collect_args(int argc, char* argv[]);
-void collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right);
+bool collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right);
 
 void setfun(bool inverse, bool left, bool right)
 {
@@ -49,7 +49,7 @@ int collect_args(int argc, char* argv[])
     return n;
 }
 
-void collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right)
+bool collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right)
 {
     char opt;
     char optstr[2]; /* string version of opt. Used for look up */
@@ -78,6 +78,7 @@ void collect_opts(int argc, char* argv[], bool *inverse, bool *left, bool *right
                 break;
         }
     }
+        return distflag;
 }
 
 int main(int argc, char *argv[])
@@ -87,7 +88,11 @@ int main(int argc, char *argv[])
     bool left, right, inverse;
     left = right = inverse = false;
 
-    collect_opts(argc, argv, &inverse, &left, &right);
+    /* default to z distribution if no arguements are given */
+    if(!collect_opts(argc, argv, &inverse, &left, &right)) {
+        dist->cont = &zdist;
+        dist->type = CONTENIOUS;
+    }
 
     if(optind >= argc) {
         fprintf(stderr, "Error: Missing positional arguements\n");
