@@ -2,15 +2,15 @@
 #define FUNS_H
 #define MAX_ARGS 4
 
-double  z_cdf_P(double               args[]);
-double  z_cdf_Q(double               args[]);
-double  z_invcdf_P(double            args[]);
-double  z_invcdf_Q(double            args[]);
+double z_cdf_P(double args[]);
+double z_cdf_Q(double args[]);
+double z_invcdf_P(double args[]);
+double z_invcdf_Q(double args[]);
 
-double  t_cdf_P(double               args[]);
-double  t_cdf_Q(double               args[]);
-double  t_invcdf_P(double            args[]);
-double  t_invcdf_Q(double            args[]);
+double t_cdf_P(double args[]);
+double t_cdf_Q(double args[]);
+double t_invcdf_P(double args[]);
+double t_invcdf_Q(double args[]);
 
 /* double  exponential_cdf(double     args[]); */
 
@@ -43,5 +43,6 @@ double binomial_Q(double args[]);
 /* double (*poisson_cdf)(unsigned int k, double mu); */
 /* double (*bionomial_pdf)(unsigned int k, double p, unsigned int n); */
 /* double (*geometric_pdf)(unsigned int k, double p); */
-/* double (*hypergeometric_pdf)(unsigned int k, unsigned int n1, unsigned int n2, unsigned int t); */
+/* double (*hypergeometric_pdf)(unsigned int k, unsigned int n1, unsigned int
+ * n2, unsigned int t); */
 #endif
