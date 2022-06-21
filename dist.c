@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-Contenious zdist = {
+static Contenious zdist = {
     { z_cdf_P, z_cdf_Q },
     { z_invcdf_P, z_invcdf_Q },
     1
 };
 
-Contenious tdist = {
+static Contenious tdist = {
     { t_cdf_P, t_cdf_Q },
     { t_invcdf_P, t_invcdf_Q },
     2,

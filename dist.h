@@ -37,8 +37,6 @@ typedef struct {
     void* data;
 } Map;
 
-extern Contenious zdist;
-extern Contenious tdist;
 extern const Distribution defaultdist;
 extern const Map contarr[];
 
