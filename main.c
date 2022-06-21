@@ -9,7 +9,7 @@
 #include <string.h>
 #include <unistd.h>
 #define OPTIONS "lri"
-#define DISTRIBUTIONS "ztfbpy"
+#define DISTRIBUTIONS "ztfpbgyew"
 
 int collect_args(double nums[], int argc, char *argv[]);
 bool collect_opts(Distribution **dist, int argc, char *argv[], bool *inverse,
