@@ -111,18 +111,18 @@ void show_help(char* s)
 {
     printf(USAGE, s);
     printf("  Distributions:\n");
-    printf("   -b Binomial distribution\n");
-    printf("   -e exponential distribution\n");
-    printf("   -f F distribution\n");
-    printf("   -g Geoemetric distribution\n");
-    printf("   -h Show this help\n");
-    printf("   -p Possion distribution\n");
-    printf("   -t Student-t distribution\n");
-    printf("   -w Weibull distribution\n");
-    printf("   -y Hypergeoemtric distribution\n");
-    printf("   -z Guassian (Normal) distribution\n");
+    printf("   -b Binomial distribution: r, p, n\n");
+    printf("   -e exponential distribution: x, mu\n");
+    printf("   -f F distribution: x, nu1, nu2\n");
+    printf("   -g Geoemetric distribution: k, p\n");
+    printf("   -p Poisson distribution: k, mu\n");
+    printf("   -t Student-t distribution: x, nu\n");
+    printf("   -w Weibull distribution: x, a, b\n");
+    printf("   -y Hypergeoemtric distribution: k, n1, n2, t\n");
+    printf("   -z Guassian (Normal) distribution: x\n");
     printf("  Modifiers:\n");
-    printf("   -l Left cumulative function (P)\n");
-    printf("   -r Right cumulative function (Q) \n");
     printf("   -i Use the inverse of the specified distribution if possible\n");
+    printf("   -l Use the left cumulative function (P)\n");
+    printf("   -r Use the right cumulative function (Q) \n");
+    printf(" -h Show this help\n");
 }
