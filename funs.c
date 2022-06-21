@@ -47,11 +47,11 @@ double binomial_Q(double args[]) {
  * gsl_ran_geometric_pdf(args[0],       args[1]);  } */
 
 double hypergeometric_pdf(double args[]) {
-    return gsl_ran_hypergeometric_pdf(args[0], args[1], args[2], args[3]);
+  return gsl_ran_hypergeometric_pdf(args[0], args[1], args[2], args[3]);
 }
 double hypergeometric_Q(double args[]) {
-    return gsl_cdf_hypergeometric_Q(args[0], args[1], args[2], args[3]);
+  return gsl_cdf_hypergeometric_Q(args[0], args[1], args[2], args[3]);
 }
 double hypergeometric_P(double args[]) {
-    return gsl_cdf_hypergeometric_P(args[0], args[1], args[2], args[3]);
+  return gsl_cdf_hypergeometric_P(args[0], args[1], args[2], args[3]);
 }
