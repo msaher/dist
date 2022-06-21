@@ -71,9 +71,22 @@ int main(int argc, char *argv[])
         *dist =  defaultdist;
     }
 
+    enum disttype type = dist->type;
+
+    /* set sane defaults if direction is unspecified */
+    if(left == right && left == false) /* direction not set expliclty */
+        switch(type) {
+            case CONTENIOUS:
+                left = true;
+                break;
+            case DISCRETE:
+                left = right = true;
+                break;
+        }
+
     /* number of required arguements */
     double nums[MAX_ARGS];
-    int req = (dist->type == CONTENIOUS) ? dist->cont->nargs : dist->disc->nargs;
+    int req = (type == CONTENIOUS) ? dist->cont->nargs : dist->disc->nargs;
     int n = collect_args(nums, argc, argv);
     if(req != n)
         ERROR("Invalid number of arguements exepcted %d, but got %d\n", req, n);
