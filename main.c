@@ -66,10 +66,9 @@ int main(int argc, char *argv[])
     bool left, right, inverse;
     left = right = inverse = false;
 
-    /* default to z distribution if no arguements are given */
+    /* use default distribution if no distflag has been given */
     if(!collect_opts(&dist, argc, argv, &inverse, &left, &right)) {
-        dist->cont = &zdist;
-        dist->type = CONTENIOUS;
+        *dist =  defaultdist;
     }
 
     /* number of required arguements */

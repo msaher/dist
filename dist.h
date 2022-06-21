@@ -39,6 +39,7 @@ typedef struct {
 
 extern Contenious zdist;
 extern Contenious tdist;
+extern const Distribution defaultdist;
 extern const Map contarr[];
 
 /* void* dist_lookup(char *key, enum disttype type); */

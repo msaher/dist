@@ -22,6 +22,8 @@ const Map contarr[] = {
     { "z", &zdist },
 };
 
+const Distribution defaultdist = { .cont = &zdist, .type = CONTENIOUS };
+
 int mapcmp(Map* a, Map* b)
 {
     return strcmp(a->key, b->key);
