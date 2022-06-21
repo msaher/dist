@@ -18,10 +18,17 @@ double t_invcdf_Q(double args[]) {
 
 /* double  exponential_cdf(double     args[])  {  return
  * gsl_cdf_exponential_P(args[0],       args[1]);  } */
-double f_cdf(double args[]) {
+double f_cdf_P(double args[]) {
+  return gsl_cdf_fdist_P(args[0], args[1], args[2]);
+}
+double f_cdf_Q(double args[]) {
   return gsl_cdf_fdist_Q(args[0], args[1], args[2]);
 }
-double f_cdfinv(double args[]) {
+
+double f_invcdf_P(double args[]) {
+  return gsl_cdf_fdist_Pinv(args[0], args[1], args[2]);
+}
+double f_invcdf_Q(double args[]) {
   return gsl_cdf_fdist_Qinv(args[0], args[1], args[2]);
 }
 /* double  weibull_cdf(double         args[])  {  return

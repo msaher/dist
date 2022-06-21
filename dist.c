@@ -11,6 +11,12 @@ static Contenious tdist = {
     2,
 };
 
+static Contenious fdist = {
+    {f_cdf_P, f_cdf_Q},
+    {f_invcdf_P, f_invcdf_Q},
+    3,
+};
+
 static Discrete binomial = {
     binomial_pdf,
     {binomial_P, binomial_Q},
@@ -30,6 +36,7 @@ static Discrete hypergeometric = {
 };
 
 const Map contarr[] = {
+    {"f", &fdist},
     {"t", &tdist},
     {"z", &zdist},
 };
