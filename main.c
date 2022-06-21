@@ -8,12 +8,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#define OPTIONS "lri"
+#define OPTIONS "lrih"
 #define DISTRIBUTIONS "eftwzbgpy"
+#define USAGE "Usage: %s [-lir] [-e | -f | -t | -w | -z | -b | -g | -p | -y | -h] args\n"
 
 int collect_args(double nums[], int argc, char *argv[]);
 bool collect_opts(Distribution **dist, int argc, char *argv[], bool *inverse,
                   bool *left, bool *right);
+
+void show_help(char*);
 
 /* Assign arguements into nums and return how many of them are there */
 int collect_args(double nums[], int argc, char *argv[]) {
@@ -45,6 +48,9 @@ bool collect_opts(Distribution **dist, int argc, char *argv[], bool *inverse,
     case 'l':
       *left = true;
       break;
+    case 'h':
+      show_help(*argv);
+      exit(1);
     default:
       optstr[0] = opt;
       if (dist_lookup(optstr, dist))
@@ -53,7 +59,7 @@ bool collect_opts(Distribution **dist, int argc, char *argv[], bool *inverse,
         else
           distflag = true;
       else
-        ERROR_USAGE();
+          ERROR(USAGE, *argv);
       break;
     }
   }
@@ -99,4 +105,24 @@ int main(int argc, char *argv[]) {
   free(dist);
 
   return 0;
+}
+
+void show_help(char* s)
+{
+    printf(USAGE, s);
+    printf("  Distributions:\n");
+    printf("   -b Binomial distribution\n");
+    printf("   -e exponential distribution\n");
+    printf("   -f F distribution\n");
+    printf("   -g Geoemetric distribution\n");
+    printf("   -h Show this help\n");
+    printf("   -p Possion distribution\n");
+    printf("   -t Student-t distribution\n");
+    printf("   -w Weibull distribution\n");
+    printf("   -y Hypergeoemtric distribution\n");
+    printf("   -z Guassian (Normal) distribution\n");
+    printf("  Modifiers:\n");
+    printf("   -l Left cumulative function (P)\n");
+    printf("   -r Right cumulative function (Q) \n");
+    printf("   -i Use the inverse of the specified distribution if possible\n");
 }
