@@ -63,10 +63,10 @@ int main(int argc, char *argv[])
 {
 
     Distribution* dist = malloc(sizeof(Distribution));
-    bool left, right, inverse;
+    bool left, right, inverse; /* flags */
     left = right = inverse = false;
 
-    /* use default distribution if no distflag has been given */
+    /* use default distribution if no distflag has been set */
     if(!collect_opts(&dist, argc, argv, &inverse, &left, &right)) {
         *dist =  defaultdist;
     }
@@ -84,13 +84,14 @@ int main(int argc, char *argv[])
                 break;
         }
 
-    /* number of required arguements */
+    /* positional arguements */
     double nums[MAX_ARGS];
     int req = (type == CONTENIOUS) ? dist->cont->nargs : dist->disc->nargs;
     int n = collect_args(nums, argc, argv);
     if(req != n)
         ERROR("Invalid number of arguements exepcted %d, but got %d\n", req, n);
 
+    /* extract probability function from distribution */
     Prob fun = get_fun(dist, inverse, left, right);
 
     double result = fun(nums);
