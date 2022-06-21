@@ -17,6 +17,12 @@ static Contenious fdist = {
     3,
 };
 
+static Contenious weibull = {
+    {weibull_cdf_P, weibull_cdf_Q},
+    {weibull_invcdf_P, weibull_invcdf_Q},
+    2,
+};
+
 static Discrete binomial = {
     binomial_pdf,
     {binomial_P, binomial_Q},
@@ -29,22 +35,37 @@ static Discrete poisson = {
     2,
 };
 
-static Discrete hypergeometric = {
-    hypergeometric_pdf,
-    {hypergeometric_P, hypergeometric_Q},
+static Discrete geo = {
+    geo_pdf,
+    {geo_P, geo_Q},
+    2,
+};
+
+static Discrete hyper = {
+    hyper_pdf,
+    {hyper_Q, hyper_P},
     4,
 };
 
+static Discrete expo = {
+    expo_pdf,
+    {expo_cdf_P, expo_cdf_Q},
+    2,
+};
+
 const Map contarr[] = {
+    {"e", &expo},
     {"f", &fdist},
     {"t", &tdist},
+    {"w", &weibull},
     {"z", &zdist},
 };
 
 const Map distarr[] = {
     {"b", &binomial},
+    {"g", &geo},
     {"p", &poisson},
-    {"y", &hypergeometric},
+    {"y", &hyper},
 };
 
 const Distribution defaultdist = {.cont = &zdist, .type = CONTENIOUS};

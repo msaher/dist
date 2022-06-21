@@ -17,6 +17,17 @@ double f_cdf_Q(double args[]);
 double f_invcdf_P(double args[]);
 double f_invcdf_Q(double args[]);
 
+double expo_pdf(double args[]);
+double expo_cdf_P(double args[]);
+double expo_cdf_Q(double args[]);
+double expo_invcdf_P(double args[]);
+double expo_invcdf_Q(double args[]);
+
+double weibull_cdf_P(double args[]);
+double weibull_cdf_Q(double args[]);
+double weibull_invcdf_P(double args[]);
+double weibull_invcdf_Q(double args[]);
+
 double binomial_pdf(double args[]);
 double binomial_P(double args[]);
 double binomial_Q(double args[]);
@@ -25,22 +36,11 @@ double poisson_pdf(double args[]);
 double poisson_P(double args[]);
 double poisson_Q(double args[]);
 
-double geo_cdf_pdf(double args[]);
-double geo_cdf_P(double args[]);
-double geo_cdf_Q(double args[]);
+double geo_pdf(double args[]);
+double geo_P(double args[]);
+double geo_Q(double args[]);
 
 double hyper_pdf(double args[]);
 double hyper_Q(double args[]);
 double hyper_P(double args[]);
-
-double expo_pdf(double args[]);
-double expo_cdf_P(double args[]);
-double expo_cdf_Q(double args[]);
-double expo_invcdf_P(double args[]);
-double expo_invcdf_Q(double args[]);
-
-double weibull_P(double args[]);
-double weibull_Q(double args[]);
-double weibull_Pinv(double args[]);
-double weibull_Qinv(double args[]);
 #endif
