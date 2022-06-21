@@ -16,8 +16,14 @@ static Contenious tdist = {
 };
 
 static Discrete binomial = {
-    bionomial_pdf,
+    binomial_pdf,
     { binomial_P, binomial_Q },
+    3,
+};
+
+static Discrete poisson = {
+    poisson_pdf,
+    { poisson_p, poisson_q },
     3,
 };
 
@@ -27,7 +33,8 @@ const Map contarr[] = {
 };
 
 const Map distarr[] = {
-    { "b", &binomial}
+    { "b", &binomial},
+    { "p", &poisson}
 };
 
 

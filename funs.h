@@ -19,17 +19,16 @@ double t_invcdf_Q(double args[]);
 
 /* double  weibull_cdf(double         args[]); */
 
-/* double  poisson_pdf(double         args[]); */
-/* double  poisson_cdf(double         args[]); */
+double poisson_pdf(double args[]);
+double poisson_p(double args[]);
+double poisson_q(double args[]);
 
-double bionomial_pdf(double args[]);
+double binomial_pdf(double args[]);
 double binomial_P(double args[]);
 double binomial_Q(double args[]);
 /* double  geometric_pdf(double       args[]); */
 
-
 /* double  hypergeometric_pdf(double  args[]); */
-
 
 /* double z_cdf(double z); */
 /* double z_invcdf(double z); */
