@@ -19,8 +19,8 @@ static Discrete binomial = {
 
 static Discrete poisson = {
     poisson_pdf,
-    {poisson_p, poisson_q},
-    3,
+    {poisson_P, poisson_Q},
+    2,
 };
 
 static Discrete hypergeometric = {

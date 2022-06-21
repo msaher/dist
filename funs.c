@@ -30,8 +30,8 @@ double f_cdfinv(double args[]) {
 double poisson_pdf(double args[]) {
   return gsl_ran_poisson_pdf(args[0], args[1]);
 }
-double poisson_p(double args[]) { return gsl_cdf_poisson_P(args[0], args[1]); }
-double poisson_q(double args[]) { return gsl_cdf_poisson_Q(args[0], args[1]); }
+double poisson_P(double args[]) { return gsl_cdf_poisson_P(args[0], args[1]); }
+double poisson_Q(double args[]) { return gsl_cdf_poisson_Q(args[0], args[1]); }
 
 double binomial_pdf(double args[]) {
   return gsl_ran_binomial_pdf(args[0], args[1], args[2]);

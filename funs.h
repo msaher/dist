@@ -14,14 +14,16 @@ double t_invcdf_Q(double args[]);
 
 /* double  exponential_cdf(double     args[]); */
 
-/* double  f_cdf(double               args[]); */
-/* double  f_cdfinv(double            args[]); */
+double f_cdf_P(double args[]);
+double f_invcdf_P(double args[]);
+double f_cdf_Q(double args[]);
+double f_invcdf_Q(double args[]);
 
 /* double  weibull_cdf(double         args[]); */
 
 double poisson_pdf(double args[]);
-double poisson_p(double args[]);
-double poisson_q(double args[]);
+double poisson_P(double args[]);
+double poisson_Q(double args[]);
 
 double binomial_pdf(double args[]);
 double binomial_P(double args[]);
