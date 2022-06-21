@@ -28,7 +28,9 @@ double binomial_P(double args[]);
 double binomial_Q(double args[]);
 /* double  geometric_pdf(double       args[]); */
 
-/* double  hypergeometric_pdf(double  args[]); */
+double hypergeometric_pdf(double args[]);
+double hypergeometric_Q(double args[]);
+double hypergeometric_P(double args[]);
 
 /* double z_cdf(double z); */
 /* double z_invcdf(double z); */
@@ -44,4 +46,5 @@ double binomial_Q(double args[]);
 /* double (*geometric_pdf)(unsigned int k, double p); */
 /* double (*hypergeometric_pdf)(unsigned int k, unsigned int n1, unsigned int
  * n2, unsigned int t); */
+
 #endif

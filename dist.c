@@ -27,6 +27,12 @@ static Discrete poisson = {
     3,
 };
 
+static Discrete hypergeometric = {
+    hypergeometric_pdf,
+    {hypergeometric_P, hypergeometric_Q},
+    4,
+};
+
 const Map contarr[] = { 
     { "t", &tdist },
     { "z", &zdist },
@@ -34,9 +40,9 @@ const Map contarr[] = {
 
 const Map distarr[] = {
     { "b", &binomial},
-    { "p", &poisson}
+    { "p", &poisson},
+    { "y", &hypergeometric},
 };
-
 
 const Distribution defaultdist = { .cont = &zdist, .type = CONTENIOUS };
 
@@ -49,9 +55,18 @@ void* dist_lookup_internal(char *key, enum disttype type)
 {
     Map map = {key , NULL};
     Map* result;
-    const Map* arr = (type == CONTENIOUS) ? contarr : distarr;
+    const Map* arr;
+    size_t size;
+    if(type == CONTENIOUS) {
+        arr = contarr;
+        size = sizeof(contarr);
+    }
+    else {
+        arr = distarr;
+        size = sizeof(distarr);
+    }
 
-    result = bsearch(&map, arr, sizeof(contarr)/sizeof(Map), sizeof(Map), (int (*)(const void*, const void*)) mapcmp);
+    result = bsearch(&map, arr, size/sizeof(Map), sizeof(Map), (int (*)(const void*, const void*)) mapcmp);
 
     if(result == NULL)
         return NULL;

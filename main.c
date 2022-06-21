@@ -9,7 +9,7 @@
 #include "utils.h"
 #include "funsetter.h"
 #define OPTIONS "lri"
-#define DISTRIBUTIONS "ztbp"
+#define DISTRIBUTIONS "ztbpy"
 
 int collect_args(double nums[], int argc, char* argv[]);
 bool collect_opts(Distribution** dist, int argc, char* argv[], bool *inverse, bool *left, bool *right);
