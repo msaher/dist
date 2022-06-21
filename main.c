@@ -33,7 +33,7 @@ bool collect_opts(Distribution** dist, int argc, char* argv[], bool *inverse, bo
     char optstr[2]; /* string version of opt. Used for look up */
     optstr[1] = '\0';
     bool distflag = false; /* used to indicate that a dist has been found */
-    while((opt = getopt(argc, argv, "ztlri")) != -1) {
+    while((opt = getopt(argc, argv, "ztlrib")) != -1) {
         switch(opt) {
             case 'i':
                 *inverse = true;

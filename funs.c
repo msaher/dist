@@ -18,6 +18,9 @@ double  t_invcdf_Q(double            args[])  {  return  gsl_cdf_tdist_Qinv(args
 /* double  weibull_cdf(double         args[])  {  return  gsl_cdf_weibull_P(args[0],           args[1],   args[2]);  } */          
 /* double  poisson_pdf(double         args[])  {  return  gsl_ran_poisson_pdf(args[0],         args[1]);  } */                     
 /* double  poisson_cdf(double         args[])  {  return  gsl_cdf_poisson_P(args[0],           args[1]);  } */                     
-/* double  bionomial_pdf(double       args[])  {  return  gsl_ran_binomial_pdf(args[0],        args[1],   args[2]);  } */          
+double bionomial_pdf(double       args[])  {  return  gsl_ran_binomial_pdf(args[0],        args[1],   args[2]);  }          
+double binomial_P(double args[]) { return gsl_cdf_binomial_P(args[0], args[1], args[2]);}
+double binomial_Q(double args[]) { return gsl_cdf_binomial_Q(args[0], args[1], args[2]);}
+
 /* double  geometric_pdf(double       args[])  {  return  gsl_ran_geometric_pdf(args[0],       args[1]);  } */                     
 /* double  hypergeometric_pdf(double  args[])  {  return  gsl_ran_hypergeometric_pdf(args[0],  args[1],   args[2],   args[3]);  } */

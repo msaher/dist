@@ -17,8 +17,8 @@ typedef struct {
 } Contenious;
 
 typedef struct {
-    Cdfs cdfs;
     Prob pdf;
+    Cdfs cdfs;
     int nargs;
 } Discrete;
 

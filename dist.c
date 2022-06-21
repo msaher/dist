@@ -15,12 +15,21 @@ static Contenious tdist = {
     2,
 };
 
-/* const Map distarr[]; */
+static Discrete binomial = {
+    bionomial_pdf,
+    { binomial_P, binomial_Q },
+    3,
+};
 
 const Map contarr[] = { 
     { "t", &tdist },
     { "z", &zdist },
 };
+
+const Map distarr[] = {
+    { "b", &binomial}
+};
+
 
 const Distribution defaultdist = { .cont = &zdist, .type = CONTENIOUS };
 
@@ -33,13 +42,14 @@ void* dist_lookup_internal(char *key, enum disttype type)
 {
     Map map = {key , NULL};
     Map* result;
-    if(type == CONTENIOUS)
-        result = bsearch(&map, contarr, sizeof(contarr)/sizeof(Map), sizeof(Map), (int (*)(const void*, const void*)) mapcmp);
-    if(result != NULL)
-        return result->data;
-    else
+    const Map* arr = (type == CONTENIOUS) ? contarr : distarr;
+
+    result = bsearch(&map, arr, sizeof(contarr)/sizeof(Map), sizeof(Map), (int (*)(const void*, const void*)) mapcmp);
+
+    if(result == NULL)
         return NULL;
 
+    return result->data;
 }
 
 int dist_lookup(char *key, Distribution** distptr)

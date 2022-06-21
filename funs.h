@@ -22,8 +22,11 @@ double  t_invcdf_Q(double            args[]);
 /* double  poisson_pdf(double         args[]); */
 /* double  poisson_cdf(double         args[]); */
 
-/* double  bionomial_pdf(double       args[]); */
+double bionomial_pdf(double args[]);
+double binomial_P(double args[]);
+double binomial_Q(double args[]);
 /* double  geometric_pdf(double       args[]); */
+
 
 /* double  hypergeometric_pdf(double  args[]); */
 
