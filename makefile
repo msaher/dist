@@ -1,11 +1,12 @@
-# test: test.c dist.o funs.o funsetter.c
-# 	gcc -g -lgsl -lgslcblas $^ -o test
+OBJECTS = main.o dist.o funs.o funsetter.o
+CFLAGS = -g
+LIBS = -lgsl -lgslcblas
+BINARY = stat
 
-stat: main.o dist.o funs.o funsetter.c
-	gcc -g -lgsl -lgslcblas $^ -o stat
-
-%.o: %.c
-	gcc -g -c $^
+$(BINARY): $(OBJECTS)
+	$(CC) $(CFLAGS) $(LIBS) $(OBJECTS) -o $(BINARY)
 
 clean:
-	rm *.o stat
+	rm $(BINARY) $(OBJECTS)
+
+.PHONEY: clean
