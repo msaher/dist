@@ -25,7 +25,7 @@ isn't it?
 -    Guassian (Normal) distribution
 
 You can compute either the `P` or `Q` cumulative functions, and even
-their inverses [1] via the  `-l`, `-h` and the `-i` options
+their inverses (if the distribution is continuous) via the  `-l`, `-h` and the `-i` options
 respectively. See `dist -h` for more.
 
 # Installing
@@ -42,5 +42,3 @@ Move the `dist` binary to wherever you feel comfortable.
 # Usage
 
 Take a look at `dist -h`.
-
-[1]: You can only find the inverse of contentious distributions
