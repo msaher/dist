@@ -112,8 +112,8 @@ void show_help(char* s)
     printf(USAGE, s);
     printf("  Distributions:\n");
     printf("   -b Binomial distribution: r, p, n\n");
-    printf("   -e exponential distribution: x, mu\n");
-    printf("   -f F distribution: x, nu1, nu2\n");
+    printf("   -e Exponential distribution: x, mu\n");
+    printf("   -f F-distribution: x, nu1, nu2\n");
     printf("   -g Geoemetric distribution: k, p\n");
     printf("   -p Poisson distribution: k, mu\n");
     printf("   -t Student-t distribution: x, nu\n");
