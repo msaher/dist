@@ -81,7 +81,17 @@ enum distribution {
 };
 
 #define MAX_ARGS 4
-int dist_nargs_table[] = {1, 2, 3, 3, 2, 3, 2, 2, 4};
+int dist_nargs_table[] = {
+    [Z_DIST]           = 1,
+    [T_DIST]           = 2,
+    [F_DIST]           = 3,
+    [WEIBULL]          = 3,
+    [EXPONENTIAL]      = 2,
+    [BINOMIAL]         = 3,
+    [POISSON]          = 2,
+    [GEOMETRIC]        = 2,
+    [HYPERGEOMETRIC]   = 4
+};
 
 struct config {
     bool left;
@@ -173,6 +183,7 @@ int main(int argc, char *argv[]) {
     // cfg.inverse must be false for discrete distributions
     if (!IS_CONTENTIOUS(cfg.dist) && cfg.inverse) {
         fprintf(stderr, "Can't find the inverse of discrete distribution\n");
+        return 1;
     }
 
     // nargs
